@@ -30,7 +30,7 @@
         "C:\\Users\\libor\\.nuget\\packages\\csvhelper/2.13.5\\lib/net40-client/CsvHelper.dll",
         "C:\\Users\\libor\\.nuget\\packages\\microsoft.aspnet.signalr.client/2.4.0\\lib/net45/Microsoft.AspNet.SignalR.Client.dll",
         "C:\\Users\\libor\\.nuget\\packages\\microsoft.rest.clientruntime/2.3.21\\lib/net461/Microsoft.Rest.ClientRuntime.dll",
-        "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json/11.0.2\\lib/net45/Newtonsoft.Json.dll",
+        "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json/12.0.3\\lib/net45/Newtonsoft.Json.dll",
         "C:\\Users\\libor\\.nuget\\packages\\sharpziplib/1.2.0\\lib/net45/ICSharpCode.SharpZipLib.dll",
         "C:\\Users\\libor\\.nuget\\packages\\system.io.abstractions/3.0.10\\lib/net40/System.IO.Abstractions.dll",
         "C:\\Users\\libor\\.nuget\\packages\\system.valuetuple/4.5.0\\lib/net461/System.ValueTuple.dll",
@@ -66,7 +66,7 @@
         "C:\\Users\\libor\\.nuget\\packages\\extended.wpf.toolkit/3.8.1\\lib/net40/Xceed.Wpf.AvalonDock.dll",
         "C:\\Users\\libor\\.nuget\\packages\\extended.wpf.toolkit/3.8.1\\lib/net40/Xceed.Wpf.Toolkit.dll",
         "C:\\Users\\libor\\.nuget\\packages\\humanizer.core/2.4.2\\lib/netstandard2.0/Humanizer.dll",
-        "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json/11.0.2\\lib/net45/Newtonsoft.Json.dll",
+        "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json/12.0.3\\lib/net45/Newtonsoft.Json.dll",
         "C:\\Users\\libor\\.nuget\\packages\\nlog/4.5.11\\lib/net45/NLog.dll",
         "C:\\Users\\libor\\.nuget\\packages\\system.collections.immutable/1.5.0\\lib/netstandard2.0/System.Collections.Immutable.dll",
         "C:\\Users\\libor\\.nuget\\packages\\system.io.abstractions/3.0.10\\lib/net40/System.IO.Abstractions.dll",
@@ -117,13 +117,23 @@
       },
       "Assemblies": [
         "C:\\Users\\libor\\.nuget\\packages\\avalonedit/5.0.3\\lib/Net40/ICSharpCode.AvalonEdit.dll",
-        "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json/11.0.2\\lib/net45/Newtonsoft.Json.dll",
+        "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json/12.0.3\\lib/net45/Newtonsoft.Json.dll",
         "C:\\Users\\libor\\.nuget\\packages\\restsharp/106.3.1\\lib/net452/RestSharp.dll",
         "C:\\Users\\libor\\.nuget\\packages\\uipath.webapi.activities/1.5.0-preview\\lib/net452/UiPath.Web.Activities.Design.dll",
         "C:\\Users\\libor\\.nuget\\packages\\uipath.webapi.activities/1.5.0-preview\\lib/net452/UiPath.Web.Activities.dll",
         "C:\\Users\\libor\\.nuget\\packages\\uipath.webapi.activities/1.5.0-preview\\lib/net452/UiPath.Web.dll"
       ],
       "Path": "C:\\Users\\libor\\.nuget\\packages\\uipath.webapi.activities\\1.5.0-preview"
+    },
+    {
+      "Package": {
+        "Id": "Newtonsoft.Json",
+        "Version": "12.0.3"
+      },
+      "Assemblies": [
+        "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json/12.0.3\\lib/net45/Newtonsoft.Json.dll"
+      ],
+      "Path": "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json\\12.0.3"
     }
   ],
   "Conflicts": [],
@@ -219,7 +229,7 @@
     },
     "Newtonsoft.Json": {
       "Id": "Newtonsoft.Json",
-      "Version": "11.0.2",
+      "Version": "12.0.3",
       "Dependencies": []
     },
     "NLog": {
@@ -606,12 +616,12 @@
     {
       "Package": {
         "Id": "Newtonsoft.Json",
-        "Version": "11.0.2"
+        "Version": "12.0.3"
       },
       "Assemblies": [
-        "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json\\11.0.2\\lib\\net45\\Newtonsoft.Json.dll"
+        "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json\\12.0.3\\lib\\net45\\Newtonsoft.Json.dll"
       ],
-      "Path": "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json\\11.0.2"
+      "Path": "C:\\Users\\libor\\.nuget\\packages\\newtonsoft.json\\12.0.3"
     },
     {
       "Package": {

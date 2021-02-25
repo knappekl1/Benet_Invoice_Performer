@@ -1,14 +1,15 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_Endpoint" Type="InArgument(x:String)" />
     <x:Property Name="in_AuthKey" Type="InArgument(x:String)" />
+    <x:Property Name="in_FolderLocationObj" Type="InArgument(njl:JObject)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2154,1187.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2152.66666666667,1186.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="42">
@@ -36,6 +37,8 @@
       <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
       <x:String>System.Runtime.Serialization</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -64,6 +67,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="418,926.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -112,10 +116,21 @@
       <ui:ReportStatus DisplayName="Report Status" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="ReportStatus_1" StatusText="[&quot;Uploading Document: &quot; + Path.GetFileName(FilePath) + &quot; to AI Engine&quot;]" />
       <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Send File To Rossum workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Components\Send File To Rossum.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_Endpoint">[in_Endpoint]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_AuthKey">[in_AuthKey]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[FilePath]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_DocumentType">[DocumentType]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Endpoint">
+            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Endpoint" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_AuthKey">
+            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_AuthKey" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">
+            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="FilePath" />
+          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DocumentType">
+            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DocumentType" />
+          </InArgument>
+          <InArgument x:TypeArguments="njl:JObject" x:Key="in_FolderLocationObj">
+            <mva:VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="in_FolderLocationObj" />
+          </InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
     </Sequence>

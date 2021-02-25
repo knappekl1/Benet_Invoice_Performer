@@ -4,11 +4,12 @@
     <x:Property Name="in_AuthKey" Type="InArgument(x:String)" />
     <x:Property Name="in_FilePath" Type="InArgument(x:String)" />
     <x:Property Name="in_DocumentType" Type="InArgument(x:String)" />
+    <x:Property Name="in_FolderLocationObj" Type="InArgument(njl:JObject)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2154,1502.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2152.66666666667,1509.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Send_File_To_Rossum_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="28">
@@ -43,7 +44,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="25">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="50">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -69,9 +70,10 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Send File To Rossum" sap:VirtualizedContainerService.HintSize="426,1438" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Send File To Rossum" sap:VirtualizedContainerService.HintSize="426,1404.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ImportResult" />
       <Variable x:TypeArguments="njl:JObject" Name="ImportResultJson" />
@@ -85,7 +87,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="384,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Importing: &quot; + path.GetFileName(in_FilePath) + &quot; to Rossum AI&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="384,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Importing: &quot; + path.GetFileName(in_FilePath) + &quot; to Rossum AI&quot;]" />
     <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" sap2010:Annotation.AnnotationText="" BodyFormat="multipart/form-data" DisplayName="HTTP Request - IMPORT" EndPoint="[in_Endpoint + &quot;\upload&quot;]" sap:VirtualizedContainerService.HintSize="384,52.6666666666667" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="POST" Result="[ImportResult]" TimeoutMS="20000">
       <ui:HttpClient.Attachments>
         <InArgument x:TypeArguments="x:String" x:Key="content">[in_FilePath]</InArgument>
@@ -149,12 +151,12 @@
         <InArgument x:TypeArguments="x:String" xml:space="preserve">[FilenameWithAnnotationID.Insert(FileNameWithAnnotationID.LastIndexOf("_") + 1,  DocumentType)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap2010:Annotation.AnnotationText="Takes existing location of the file and replaces folder Classified for Processing. May be changed if needed&#xA;" DisplayName="Assign New Save Folder" sap:VirtualizedContainerService.HintSize="384,140.666666666667" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign sap2010:Annotation.AnnotationText="Reads New location of the file from JSOB Obj" DisplayName="Assign New Save Folder" sap:VirtualizedContainerService.HintSize="384,107.333333333333" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[NewSaveLocation]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[in_FilePath.Replace("\Classified\", "\Processing\")]</InArgument>
+        <InArgument x:TypeArguments="x:String">[in_FolderLocationObj("ProcessingSaveFolder").ToString]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -167,7 +169,7 @@
         <OutArgument x:TypeArguments="x:String">[NewSaveLocation]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[NewSaveLocation.Replace(path.GetFileName(NewSaveLocation), FilenameWithAnnotationID)]</InArgument>
+        <InArgument x:TypeArguments="x:String">[path.Combine(NewSaveLocation, FilenameWithAnnotationID)]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">

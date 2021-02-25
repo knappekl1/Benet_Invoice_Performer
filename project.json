@@ -3,6 +3,7 @@
   "description": "Invoice processing, performer bot for Invoice-Dispatcher process",
   "main": "Main.xaml",
   "dependencies": {
+    "Newtonsoft.Json": "[12.0.3]",
     "UiPath.Excel.Activities": "[2.9.1-preview]",
     "UiPath.System.Activities": "[20.8.0-preview]",
     "UiPath.UIAutomation.Activities": "[20.8.0-preview]",
@@ -12,7 +13,7 @@
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "20.8.0.0",
-  "projectVersion": "1.0.7",
+  "projectVersion": "1.0.9",
   "runtimeOptions": {
     "autoDispose": false,
     "isPausable": true,
